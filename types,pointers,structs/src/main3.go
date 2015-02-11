@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"reflect"
+	"runtime"
 )
 
 
@@ -26,12 +28,24 @@ func getPrinter ( printType int) (func(string)) {
 	}
 }
 
+func testPrinter(  printFunction func(string) ) {
+		var fName = runtime.FuncForPC(reflect.ValueOf(printFunction).Pointer()).Name()
+		fName = fName + " printer tested"
+		printFunction( fName )
+	}
+
 
 func main() {
 
 	var myMsg = "print this!"
+	var printType = 0
 
-	var aPrinter = getPrinter(0)
+	if printType == 0 {
+		var aPrinter = getPrinter(0)
+		aPrinter(myMsg)
+	} else {
+		fmt.Println("try again")
+	}
 
-	aPrinter(myMsg)
+	testPrinter( myTextPrinter )
 }
