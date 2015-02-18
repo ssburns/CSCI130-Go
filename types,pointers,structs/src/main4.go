@@ -32,9 +32,19 @@ func main() {
 	}
 	fmt.Print("[2:]")
 	fmt.Println(mySlice[2:])
-//	fmt.Print("[-1:]")
-//	fmt.Println(mySlice[-1:])
-	
-	
-	
+
+
+	//string slicing
+	myString := "don't cut me!"
+	fmt.Println(myString)
+	fmt.Println(myString[6:])
+
+	//more string slicing
+	myStringSlice := []string{"one", "two", "three", "four", "five"}
+	fmt.Println(myStringSlice[1:][1][1:])
+
+	//loops?
+	for key, val := range(myStringSlice) {
+		fmt.Println(key, " - ", val)
+	}
 }
