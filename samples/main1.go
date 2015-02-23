@@ -15,6 +15,25 @@ func newSum (intArrayParam [3]int) int {
 	return total
 }
 
+type places struct {
+	name	mySent
+	language	string
+}
+
+func (p places) sayHello() {
+	fmt.Println(p.name, " speaks ", p.language)
+}
+
+type mySent string
+func (s mySent) hoorah() {
+	fmt.Println("METHOD: hoorah")
+}
+
+func (s mySent) retLang() string {
+	return "I Speak ???"
+}
+
+
 func main() {
 
 	//
@@ -59,4 +78,23 @@ func main() {
 	//doesn't work
 	//fmt.Println("slice newSum - ", newSum(numberSlice))
 	fmt.Println("slice newSum - ", newSum([3]int{numberSlice[0], numberSlice[1], numberSlice[2]}))
+
+	//
+	// struct and method
+	//
+	var USA = places{
+		name: "USA",
+		language: "English",
+	}
+	USA.sayHello()
+
+	//
+	// string and method
+	//
+	USA.name.hoorah()
+
+	//
+	// string and method with return
+	//
+	fmt.Println(USA.name.retLang())
 }
