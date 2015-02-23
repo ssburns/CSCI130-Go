@@ -63,7 +63,7 @@ func main() {
 	fmt.Println("smallerThanBiggerSlice - ", smallerThanBiggerSlice)
 
 	//
-	//slices vs arrays
+	//slices vs arrays 
 	//
 	numberSlice = []int{5,10,15}
 	numberArray := [3]int{5,10,15}
