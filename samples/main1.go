@@ -58,5 +58,9 @@ func main() {
 
 	//doesn't work
 	//fmt.Println("slice newSum - ", newSum(numberSlice))
+<<<<<<< HEAD
 	fmt.Println("slice newSum - ", newSum([3]int{numberSlice[0], numberSlice[1], numberSlice[2]}))
+=======
+	fmt.Println("slice newSum - ", newSum([3]int{numberSlice[0], numberSlice[1]}))
+>>>>>>> parent of 9f3895b... methods
 }
