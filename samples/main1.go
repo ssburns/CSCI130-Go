@@ -58,5 +58,5 @@ func main() {
 
 	//doesn't work
 	//fmt.Println("slice newSum - ", newSum(numberSlice))
-	fmt.Println("slice newSum - ", newSum([3]int{numberSlice[0], numberSlice[1]}))
+	fmt.Println("slice newSum - ", newSum([3]int{numberSlice[0], numberSlice[1], numberSlice[2]}))
 }
