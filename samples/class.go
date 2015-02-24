@@ -2,8 +2,11 @@ package main
 
 import "fmt"
 
+
+func square(x *float64) { *x = *x * *x }
+
 func main() {
-	// TYPES CAN CONTAIN DATA
-	x := [6]string{"a","b","c","d","e","f"}
-	fmt.Println(x[2:5])
+	x := 1.5
+	square(&x)
+	fmt.Println(x)
 }
