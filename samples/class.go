@@ -37,4 +37,7 @@ func main() {
 	x := 5
 	zero(&x)
 	fmt.Println(x) // x is 0
+
+	fmt.Println((true && false) || (false && true) || !(false && false))
+
 }
