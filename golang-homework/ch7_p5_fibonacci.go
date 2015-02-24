@@ -11,6 +11,9 @@ import (
 
 func fib(x int) int {
 	if x < 0 {
+		defer func() {
+			fmt.Println(recover())
+		}()
 		panic("don't do that")
 	} else if x == 0 {
 		return 0
@@ -22,7 +25,7 @@ func fib(x int) int {
 }
 
 func main() {
-	for i := -1; i <= 10; i++{
+	for i := -10; i <= 10; i++{
 		fmt.Println(i,fib(i))
 	}
 }
