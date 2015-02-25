@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36180471-e02c-409b-ad4d-423dbd205e77" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/golang-homework/ch11_p4_MinMax.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/golang-homework/golang_math/math.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/golang-homework/golang_math/math.go" afterPath="$PROJECT_DIR$/golang-homework/golang_math/math.go" />
     </list>
     <ignored path="CSCI130-Go.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,21 +26,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ch11_p4_MinMax.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ch11_p4_MinMax.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/golang-homework/ch11_p4_MinMax.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03820225" vertical-offset="0" max-vertical-offset="890">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
               <caret line="2" column="5" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="94" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="math.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="math.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/golang-homework/golang_math/math.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.18826135" vertical-offset="0" max-vertical-offset="903">
+              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -86,8 +84,8 @@
         <option value="$PROJECT_DIR$/golang-homework/ch9_p3_shapePerimeterInterface.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch10_p2_sleepByChan.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch7_p3_findVariadicLarge.go" />
-        <option value="$PROJECT_DIR$/golang-homework/golang_math/math.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch11_p4_MinMax.go" />
+        <option value="$PROJECT_DIR$/golang-homework/golang_math/math.go" />
       </list>
     </option>
   </component>
@@ -655,18 +653,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/golang-homework/golang_math/math.go">
+    <entry file="file://$PROJECT_DIR$/golang-homework/ch11_p4_MinMax.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="94" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/golang-homework/ch11_p4_MinMax.go">
+    <entry file="file://$PROJECT_DIR$/golang-homework/golang_math/math.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03820225" vertical-offset="0" max-vertical-offset="890">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="94" />
+        <state vertical-scroll-proportion="0.18826135" vertical-offset="0" max-vertical-offset="903">
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
           <folding />
         </state>
       </provider>
