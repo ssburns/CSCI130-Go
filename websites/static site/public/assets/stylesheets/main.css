@@ -27,7 +27,19 @@ header {
 }
 
 ul {
-    display: none;
+    display: flex;
+    align-items: center;
+}
+
+
+
+li a{
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 h1 {
@@ -103,18 +115,16 @@ ARTICLES
 section {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
     padding-left: 100px;
     padding-right: 100px;
-    max-width: 1000px;
 }
 
-/*article {*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*flex-wrap: nowrap;*/
-    /*max-width: 1000px;*/
-/*}*/
+article {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+}
 
 article h1 {
     font-family: Arial, sans-serif;
