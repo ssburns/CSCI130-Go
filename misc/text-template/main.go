@@ -22,9 +22,10 @@ Thank you for donating!
 {{else}}
 It makes us sad that you didn't donate, something something puppies and kittens. :(
 {{end}}
+Our upcoming events are:
+{{range .MoreInfo.Events}} {{.}}
+{{end}}
 `
-	const letter2 = "{{.Extra}}"
-
 	recipients := []Recipient{
 		{"Mr", "Burns", false},
 		{"Mr", "Smithers", true},
@@ -33,9 +34,9 @@ It makes us sad that you didn't donate, something something puppies and kittens.
 	}
 
 	upcomingEvents := UpcomingEvents{Events:[]string{
-		"event1",
-		"event2",
-		"event3"}}
+		"Super Glue Humpty Dumpty: overmorrow yesterday",
+		"Potato salad competition: everyday",
+		"Eat Icecream in a Hammock Sit-A-Thon: January"}}
 
 
 	t := template.Must(template.New("letter").Parse(letter))
