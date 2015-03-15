@@ -1,6 +1,0 @@
-Dear {{.Honorific}} {{.Name}}
-
-{{if .Donated}}
-Thank you for donating!
-{{else}}
-It makes us sad that you didn't donate, something something puppies and kittens. :(
