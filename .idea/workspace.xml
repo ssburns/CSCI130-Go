@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36180471-e02c-409b-ad4d-423dbd205e77" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/geoweb.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/stylesheets/goview.css" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\cat.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\dog.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\edit.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\mouse.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\test.go" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\test2.go" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\test3.go" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground\view.html" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\samples\geoweb.go" afterPath="$PROJECT_DIR$/playground/geoweb.go" />
+      <change type="MOVED" beforePath="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\samples\stylesheets\goview.css" afterPath="$PROJECT_DIR$/playground/stylesheets/goview.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CSCI130-Go.iws" />
@@ -35,46 +27,18 @@
     <favorites_list name="CSCI130-Go" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="result.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/websites/form-simple/templates/result.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.21444954" vertical-offset="0" max-vertical-offset="872">
-                  <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="prompt.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/websites/form-simple/templates/prompt.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="357">
-                  <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="form.go" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/websites/form-simple/form.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6057907" vertical-offset="0" max-vertical-offset="898">
-                  <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="geoweb.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/playground/geoweb.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.619403" vertical-offset="2258" max-vertical-offset="3332">
+              <caret line="167" column="100" selection-start-line="167" selection-start-column="100" selection-end-line="167" selection-end-column="100" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,7 +46,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/shayhowe/index.html" />
         <option value="$PROJECT_DIR$/samples/main2.go" />
         <option value="$PROJECT_DIR$/golang-homework/fToC.go" />
         <option value="$PROJECT_DIR$/golang-homework/feetToMeters.go" />
@@ -133,6 +96,7 @@
         <option value="$PROJECT_DIR$/websites/form-simple/templates/prompt.html" />
         <option value="$PROJECT_DIR$/websites/form-simple/templates/result.html" />
         <option value="$PROJECT_DIR$/websites/form-simple/form.go" />
+        <option value="$PROJECT_DIR$/playground/geoweb.go" />
       </list>
     </option>
   </component>
@@ -140,10 +104,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -274,7 +238,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="serve pages" />
+              <option name="myItemId" value="playground" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -288,7 +252,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="samples" />
+              <option name="myItemId" value="playground" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -316,11 +284,11 @@
       <recent name="C:\Users\sburns.SERPAPKG\Desktop\personal\School\CSCI 130\gocode\src\CSCI130-Go\golang-homework" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\playground" />
       <recent name="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\samples\stylesheets" />
       <recent name="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\samples" />
       <recent name="C:\Users\sburns.SERPAPKG\Desktop\personal\School\CSCI 130\gocode\src\CSCI130-Go\misc\text-template" />
       <recent name="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\websites\static site\public\assets\stylesheets" />
-      <recent name="C:\Users\sb\Google Drive\CSCI 130\gocode\src\CSCI130-Go\websites\static site\grunt" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.Gruntfile.js">
@@ -447,15 +415,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10590095" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10590095" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13081081" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -563,38 +531,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1802">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types,pointers,structs/main3.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="969">
           <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -644,20 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main2.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/main1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22742476" vertical-offset="0" max-vertical-offset="1802">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -803,6 +729,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1574074" vertical-offset="816" max-vertical-offset="1734">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -817,6 +744,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12948857" vertical-offset="0" max-vertical-offset="919">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -835,6 +763,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/websites/form-simple/form.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6057907" vertical-offset="0" max-vertical-offset="898">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/websites/form-simple/templates/result.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21444954" vertical-offset="0" max-vertical-offset="872">
@@ -843,10 +779,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/websites/form-simple/form.go">
+    <entry file="file://$PROJECT_DIR$/playground/geoweb.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6057907" vertical-offset="0" max-vertical-offset="898">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.619403" vertical-offset="2258" max-vertical-offset="3332">
+          <caret line="167" column="100" selection-start-line="167" selection-start-column="100" selection-end-line="167" selection-end-column="100" />
           <folding />
         </state>
       </provider>
