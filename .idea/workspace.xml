@@ -2,7 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36180471-e02c-409b-ad4d-423dbd205e77" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/google-api-1/gomail.go" afterPath="$PROJECT_DIR$/websites/google-api-1/gomail.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/websites/google-api-1/app.yaml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/websites/google-api-1/config/client_secret.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/websites/google-api-1/main.go" />
+      <change type="MOVED" beforePath="C:\Users\sburns.SERPAPKG\Desktop\personal\School\CSCI 130\gocode\src\CSCI130-Go\websites\google-api-1\gomail.go" afterPath="$PROJECT_DIR$/websites/google-api-1/gomail_begin.go" />
+      <change type="MOVED" beforePath="C:\Users\sburns.SERPAPKG\Desktop\personal\School\CSCI 130\gocode\src\CSCI130-Go\websites\google-api-1\private\readme.txt" afterPath="$PROJECT_DIR$/websites/google-api-1/config/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/sigmund/bench.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/sigmund/bench.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/minimatch/node_modules/sigmund/bench.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/minimatch/node_modules/sigmund/bench.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/debug/debug.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/debug/debug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/debug/lib/debug.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/debug/lib/debug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/esprima.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/esprima.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/expect.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/expect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/index.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_underscore/vendor/jquery.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_underscore/vendor/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_underscore/vendor/jslitmus.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/test/test_underscore/vendor/jslitmus.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/underscore.string/test/test_underscore/vendor/jslitmus.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/underscore.string/test/test_underscore/vendor/jslitmus.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/coffee-script/lib/coffee-script/lexer.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/coffee-script/lib/coffee-script/lexer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.compat.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.compat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/lodash/lodash.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/lodash/lodash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.underscore.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/lodash/dist/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/lodash/lodash.underscore.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/lodash/lodash.underscore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/mocha.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/mocha.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/qs.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/tiny-lr-fork/node_modules/qs/test/browser/qs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/sigmund/sigmund.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt-contrib-watch/node_modules/gaze/node_modules/globule/node_modules/minimatch/node_modules/sigmund/sigmund.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/minimatch/node_modules/sigmund/sigmund.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/minimatch/node_modules/sigmund/sigmund.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/test/test.js" afterPath="$PROJECT_DIR$/websites/static site/grunt/node_modules/grunt/node_modules/js-yaml/node_modules/esprima/test/test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CSCI130-Go.iws" />
@@ -26,38 +66,7 @@
     <favorites_list name="CSCI130-Go" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="geoweb.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/playground/geoweb.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2311" max-vertical-offset="3332">
-              <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="153" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gomail.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/websites/google-api-1/gomail.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6026588" vertical-offset="255" max-vertical-offset="3451">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="goview.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/websites/google-api-1/stylesheets/goview.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,9 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/golang-homework/feetToMeters.go" />
-        <option value="$PROJECT_DIR$/golang-homework/ch5_p1.go" />
-        <option value="$PROJECT_DIR$/golang-homework/ch6_p2.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch7_p2_halving.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch7_p4_makeOddGenerator.go" />
         <option value="$PROJECT_DIR$/golang-homework/ch7_p5_fibonacci.go" />
@@ -116,6 +122,9 @@
         <option value="$PROJECT_DIR$/playground/geoweb.go" />
         <option value="$PROJECT_DIR$/websites/google-api-1/geoweb.go" />
         <option value="$PROJECT_DIR$/websites/google-api-1/gomail.go" />
+        <option value="$PROJECT_DIR$/websites/google-api-1/private/readme.txt" />
+        <option value="$PROJECT_DIR$/websites/google-api-1/app.yaml" />
+        <option value="$PROJECT_DIR$/websites/google-api-1/main.go" />
       </list>
     </option>
   </component>
@@ -123,10 +132,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="215" />
-    <option name="y" value="21" />
-    <option name="width" value="1918" />
-    <option name="height" value="1038" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -202,22 +211,8 @@
               <option name="myItemId" value="websites" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CSCI130-Go" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CSCI130-Go" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="websites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-api-1" />
+              <option name="myItemId" value="static site" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -238,8 +233,44 @@
               <option name="myItemId" value="google-api-1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
+              <option name="myItemId" value="CSCI130-Go" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSCI130-Go" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="websites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="google-api-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSCI130-Go" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSCI130-Go" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="websites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="form-simple" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -431,16 +462,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="215" y="21" width="1918" height="1038" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24111949" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23653643" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.106203996" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10520833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13081081" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -813,10 +844,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/websites/google-api-1/gomail.go">
+    <entry file="file://$PROJECT_DIR$/websites/google-api-1/config/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6026588" vertical-offset="255" max-vertical-offset="3451">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.050221566" vertical-offset="0" max-vertical-offset="677">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/websites/google-api-1/app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="677">
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/websites/google-api-1/gomail_begin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14956012" vertical-offset="2397" max-vertical-offset="3451">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/websites/google-api-1/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34244603" vertical-offset="0" max-vertical-offset="695">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
