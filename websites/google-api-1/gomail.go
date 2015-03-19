@@ -7,8 +7,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
+//	"net/url"
 	"os"
+	"google.golang.org/api/gmail/v1"
 )
 
 func main() {
@@ -67,20 +68,21 @@ var upperTemplate = template.Must(template.New("showimage").Parse(upperTemplateH
 
 func showimage(w http.ResponseWriter, r *http.Request) {
 	// Sample address "1600 Amphitheatre Parkway, Mountain View, CA"
-	addr := r.FormValue("str")
+//	addr := r.FormValue("str")
 
 	// QueryEscape escapes the addr string so
 	// it can be safely placed inside a URL query
 	// safeAddr := url.QueryEscape(addr)
-	safeAddr := url.QueryEscape(addr)
-	fullUrl := fmt.Sprintf(
-		"http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s",
-		safeAddr)
+//	safeAddr := url.QueryEscape(addr)
+//	fullUrl := fmt.Sprintf(
+//		"http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s",
+//		safeAddr)
 
 	// For control over HTTP client headers,
 	// redirect policy, and other settings,
 	// create a Client
 	// A Client is an HTTP client
+	fullUrl := "https://www.googleapis.com/gmail/v1/users/ssburns%40gmail.com/messages?maxResults=10&includeSpamTrash=false"
 	client := &http.Client{}
 
 	// Build the request
@@ -108,7 +110,9 @@ func showimage(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("ReadAll: ", dataReadErr)
 	}
 
-	res := make(map[string][]map[string]map[string]map[string]interface{}, 0)
+//	res := make(map[string][]map[string]map[string]map[string]interface{}, 0)
+	res := make(map[string][]map[string]interface{},0)
+
 	// https://developers.google.com/maps/documentation/geocoding/#JSON
 	// making a map
 	// with a key of [string]
@@ -150,11 +154,12 @@ func showimage(w http.ResponseWriter, r *http.Request) {
 	// filled with the JSON data (this is simplifying,
 	// it actually accepts an interface)
 	json.Unmarshal(body, &res)
+	fmt.Println("here")
 
-	lat := res["results"][0]["geometry"]["location"]["lat"]
-	lng := res["results"][0]["geometry"]["location"]["lng"]
+//	lat := res["results"][0]["geometry"]["location"]["lat"]
+//	lng := res["results"][0]["geometry"]["location"]["lng"]
 //	tmp, _ := res["results"]
-	for key, value := range(res["results"][0]["address_components"]) {
+	for key, value := range(res["messages"]) {
 		fmt.Println(key, " : ", value)
 	}
 //	fmt.Println(lat)
@@ -165,7 +170,7 @@ func showimage(w http.ResponseWriter, r *http.Request) {
 		fmt.Sprintf(
 //			"http://maps.googleapis.com/maps/api/streetview?sensor=false&size=600x300&location=%.13f,%.13f", lat, lng)
 //			"http://maps.googleapis.com/maps/api/staticmap?zoom=20&size=640x640&center=%.13f,%.13f&maptype=satellite", lat, lng)
-			"http://maps.googleapis.com/maps/api/staticmap?size=640x640&markers=color:red%%7Alabel:A%%7C%.13f,%.13f&maptype=satellite", lat, lng)
+			"http://maps.googleapis.com/maps/api/staticmap?size=640x640&markers=color:red%%7Alabel:A%%7C%.13f,%.13f&maptype=satellite", 0, 0)
 
 	tempErr := upperTemplate.Execute(w, queryUrl)
 	if tempErr != nil {
