@@ -11,6 +11,71 @@ import (
 	"os"
 )
 
+type GeoCodeJson struct {
+	Status string `json: "status"`
+	Results []GeoJsonResults `json: "results"`
+}
+
+type GeoJsonResults struct {
+	Formatted_address string `json: "formatted_address"`
+	Types []string `json: "types"`
+	Address_components []GeoJsonAddrComp `json: "address_components"`
+	Geometry GeoJsonGeometry `json: "geometry"`
+}
+
+type GeoJsonAddrComp struct {
+	Long_name string `json: "long_name"`
+	Short_name string `json: "short_name"`
+	Types []string `json: "types"`
+}
+
+type GeoJsonGeometry struct {
+	Location_type string `json: "location_type"`
+	Location GeoJsonCoordinate `json: "location"`
+	Viewport GeoJsonViewport `json: "viewport"`
+}
+
+type GeoJsonViewport struct {
+	Northeast GeoJsonCoordinate `json: "northeast"`
+	Southwest GeoJsonCoordinate `json: "southwest"`
+}
+
+type GeoJsonCoordinate struct {
+	Lat float64 `json: "lat"`
+	Lng float64 `json: "lng"`
+}
+
+//Alternatively pack everything into one struct
+//type GeoCodeJson struct {
+//	Status string `json: "status"`
+//	Results []struct {
+//		Address_components []struct {
+//			Long_name string `json: "long_name"`
+//			Short_name string `json: "short_name"`
+//			Types []string `json: "types"`
+//		}`json: "address_components"`
+//		Formatted_address string `json: "formatted_address"`
+//		Geometry struct {
+//			Location struct {
+//				Lat float64 `json: "lat"`
+//				Lng float64 `json: "lng"`
+//			}`json: "location"`
+//			Location_type string `json: "location_type"`
+//			Viewport struct {
+//				Northeast struct {
+//					Lat float64 `json: "lat"`
+//					Lng float64 `json: "lng"`
+//				}`json: "northeast"`
+//				Southwest struct {
+//					Lat float64 `json: "lat"`
+//					Lng float64 `json: "lng"`
+//				}`json: "southwest"`
+//			}`json: "viewport"`
+//		}`json: "geometry"`
+//		Types []string `json: "types"`
+//	}`json: "results"`
+//}
+
 func main() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/showimage", showimage)
@@ -109,6 +174,7 @@ func showimage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res := make(map[string][]map[string]map[string]map[string]interface{}, 0)
+	var res2 GeoCodeJson
 	// https://developers.google.com/maps/documentation/geocoding/#JSON
 	// making a map
 	// with a key of [string]
@@ -150,14 +216,13 @@ func showimage(w http.ResponseWriter, r *http.Request) {
 	// filled with the JSON data (this is simplifying,
 	// it actually accepts an interface)
 	json.Unmarshal(body, &res)
+	json.Unmarshal(body, &res2)
 
-	lat := res["results"][0]["geometry"]["location"]["lat"]
-	lng := res["results"][0]["geometry"]["location"]["lng"]
-//	tmp, _ := res["results"]
-	for key, value := range(res["results"][0]["address_components"]) {
-		fmt.Println(key, " : ", value)
-	}
-//	fmt.Println(lat)
+
+//	lat := res["results"][0]["geometry"]["location"]["lat"]
+//	lng := res["results"][0]["geometry"]["location"]["lng"]
+	lat := res2.Results[0].Geometry.Location.Lat
+	lng := res2.Results[0].Geometry.Location.Lng
 
 	// %.13f is used to convert float64 to a string
 	// https://gobyexample.com/string-formatting
