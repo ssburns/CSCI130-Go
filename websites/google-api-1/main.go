@@ -10,7 +10,8 @@ import (
 	"io/ioutil"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
-	"appengine"
+	"google.golang.org/appengine"
+	gaeLog "google.golang.org/appengine/log"
 //	gmail "google.golang.org/api/gmail/v1"
 
 )
@@ -42,24 +43,21 @@ func init() {
 
 func oauth2callback( w http.ResponseWriter, r *http.Request) {
 
-	c := appengine.NewContext(r)
 
 	//TODO: validate FormValue("state")
 
 	code :=  r.FormValue("code")
 
-	c.Infof("State Val: %s", r.FormValue("state"))
-	c.Infof("Code: %s", code)
-	c.Infof("Scope: %s", conf.Scopes)
+	c := appengine.NewContext(r)
+//	gaeLog.Infof(c, "State Val: %s", r.FormValue("state"))
 
-
-	tok, err := conf.Exchange(oauth2.NoContext, code)
+	tok, err := conf.Exchange(c, code)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	client := conf.Client(oauth2.NoContext, tok)
-//	client.Get("...")
+	client.Get("...")
 
 
 	fmt.Fprint(w, "No Autographs!")

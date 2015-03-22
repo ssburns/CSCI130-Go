@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36180471-e02c-409b-ad4d-423dbd205e77" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/websites/google-api-1/main_gae.got" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/google-api-1/app.yaml" afterPath="$PROJECT_DIR$/websites/google-api-1/app.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websites/google-api-1/main.go" afterPath="$PROJECT_DIR$/websites/google-api-1/main.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,8 +30,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/websites/google-api-1/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54371" vertical-offset="544" max-vertical-offset="3366">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.43496802" vertical-offset="510" max-vertical-offset="3332">
+              <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -95,8 +93,8 @@
         <option value="$PROJECT_DIR$/websites/form-simple/form.go" />
         <option value="$PROJECT_DIR$/playground/geoweb.go" />
         <option value="$PROJECT_DIR$/websites/google-api-1/main_json_test.go" />
-        <option value="$PROJECT_DIR$/websites/google-api-1/config/client_secret.json" />
         <option value="$PROJECT_DIR$/websites/google-api-1/app.yaml" />
+        <option value="$PROJECT_DIR$/websites/google-api-1/config/client_secret.json" />
         <option value="$PROJECT_DIR$/websites/google-api-1/main.go" />
       </list>
     </option>
@@ -819,14 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/websites/google-api-1/config/client_secret.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="289">
-          <caret line="5" column="79" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types,pointers,structs/main5.go">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5618337" vertical-offset="0" max-vertical-offset="938">
@@ -867,10 +857,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/websites/google-api-1/config/client_secret.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20504385" vertical-offset="0" max-vertical-offset="912">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/websites/google-api-1/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54371" vertical-offset="544" max-vertical-offset="3366">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.43496802" vertical-offset="510" max-vertical-offset="3332">
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
           <folding />
         </state>
       </provider>
