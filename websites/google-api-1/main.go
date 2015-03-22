@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
+	"appengine"
 //	gmail "google.golang.org/api/gmail/v1"
 
 )
@@ -30,6 +31,8 @@ type WebType struct{
 	Javascript_origins []string `json: "javascript_origins"`
 }
 
+var conf = new(oauth2.Config)
+
 func init() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/g_start", g_start)
@@ -38,6 +41,27 @@ func init() {
 }
 
 func oauth2callback( w http.ResponseWriter, r *http.Request) {
+
+	c := appengine.NewContext(r)
+
+	//TODO: validate FormValue("state")
+
+	code :=  r.FormValue("code")
+
+	c.Infof("State Val: %s", r.FormValue("state"))
+	c.Infof("Code: %s", code)
+	c.Infof("Scope: %s", conf.Scopes)
+
+
+	tok, err := conf.Exchange(oauth2.NoContext, code)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	client := conf.Client(oauth2.NoContext, tok)
+//	client.Get("...")
+
+
 	fmt.Fprint(w, "No Autographs!")
 }
 
@@ -46,7 +70,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func g_start(w http.ResponseWriter, r *http.Request) {
-
 	//Read the client_secret.json and parse the file so we can get our Google authorization
 	file, err := ioutil.ReadFile("./config/client_secret.json")
 	if err != nil {
@@ -59,7 +82,8 @@ func g_start(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("client_secret.json unmarshall err:", )
 	}
 
-	conf := &oauth2.Config{
+	//TODO: update with ConfigFromJson
+	conf = &oauth2.Config{
 		ClientID: clientSecret.Web.Client_id,
 		ClientSecret: clientSecret.Web.Client_secret,
 		RedirectURL: clientSecret.Web.Redirect_uris[0],
@@ -68,29 +92,68 @@ func g_start(w http.ResponseWriter, r *http.Request) {
 		},
 		Endpoint: google.Endpoint,
 	}
-
-	//Redirect user to Google's consent page
-	url := conf.AuthCodeURL("state")
-	fmt.Fprintf(w, "Visit the URL for the auth dialog: %v", url)
-
-	//Handle the exchange code to initiate a transport
-	tok, err := conf.Exchange(oauth2.NoContext, "authorization-code")
 	if err != nil {
-		log.Fatalf("oauth2 exchange", err)
+		log.Fatal(err)
 	}
 
-	client := conf.Client(oauth2.NoContext, tok)
-	client.Get("...")
+	url := conf.AuthCodeURL("state", oauth2.AccessTypeOnline)
 
-	fmt.Fprint(w, "No Autographs!")
-
-//	rootForm, err := ioutil.ReadFile("templates/prompt.html");
-//	if err != nil {
-//		http.NotFound(w, r)
-//		return
-//	}
-//	fmt.Fprint(w, string(rootForm))
+	http.Redirect(w, r, url, http.StatusFound)
+//	fmt.Fprintf(w, "Visit the URL for the auth dialog: %v", url)
+	// The following client will be authorized by the App Engine
+	// app's service account for the provided scopes.
+//	client := http.Client{Transport: opts.NewTransport()}
+//	client.Get("...")
 }
+
+//func g_start(w http.ResponseWriter, r *http.Request) {
+//
+//	//Read the client_secret.json and parse the file so we can get our Google authorization
+//	file, err := ioutil.ReadFile("./config/client_secret.json")
+//	if err != nil {
+//		fmt.Println("client_secret.json:", err)
+//	}
+//
+////	var clientSecret ClientSecret
+////	err = json.Unmarshal(file, &clientSecret)
+////	if err != nil {
+////		fmt.Println("client_secret.json unmarshall err:", )
+////	}
+////
+////	conf := &oauth2.Config{
+////		ClientID: clientSecret.Web.Client_id,
+////		ClientSecret: clientSecret.Web.Client_secret,
+////		RedirectURL: clientSecret.Web.Redirect_uris[0],
+////		Scopes: []string {
+////			"https://www.googleapis.com/auth/gmail.readonly",
+////		},
+////		Endpoint: google.Endpoint,
+////	}
+//
+//	google.ConfigFromJSON()
+//
+//	//Redirect user to Google's consent page
+//	url := conf.AuthCodeURL("state")
+//	fmt.Fprintf(w, "Visit the URL for the auth dialog: %v", url)
+//
+//	//Handle the exchange code to initiate a transport
+//	tok, err := conf.Exchange(oauth2.NoContext, "authorization-code")
+//	if err != nil {
+//		log.Fatalf("oauth2 exchange", err)
+//	}
+//
+//	client := conf.Client(oauth2.NoContext, tok)
+//	client.Get("...")
+//
+//	fmt.Fprint(w, "No Autographs!")
+//
+////	rootForm, err := ioutil.ReadFile("templates/prompt.html");
+////	if err != nil {
+////		http.NotFound(w, r)
+////		return
+////	}
+////	fmt.Fprint(w, string(rootForm))
+//}
 
 var resultFile, _ = ioutil.ReadFile("templates/result.html");
 var resultHtmlTemplate = template.Must(template.New("result").Parse(string(resultFile)))
