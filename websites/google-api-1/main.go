@@ -11,6 +11,7 @@ import (
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/urlfetch"
 //	"golang.org/x/net/context"
 	gaeLog "google.golang.org/appengine/log"
 //	gmail "google.golang.org/api/gmail/v1"
@@ -35,8 +36,8 @@ type WebType struct{
 
 type gmailProfile struct {
 	EmailAddress string `json: "emailAddress"`
-	MessagesTotal uint `json: "messagesTotal"`
-	ThreadsTotal uint `json: "threadsTotal"`
+	MessagesTotal uint64 `json: "messagesTotal"`
+	ThreadsTotal uint64 `json: "threadsTotal"`
 	HistoryId string `json: "historyId"`
 }
 
@@ -57,7 +58,6 @@ func oauth2callback( w http.ResponseWriter, r *http.Request) {
 	code :=  r.FormValue("code")
 
 	c := appengine.NewContext(r)
-//	gaeCtx = appengine.NewContext(r)
 
 	//Example log to Gae Log
 //	gaeLog.Infof(c, "State Val: %s", r.FormValue("state"))
@@ -67,19 +67,71 @@ func oauth2callback( w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	client := conf.Client(oauth2.NoContext, tok)
-	client.Get("...")
+//	client := conf.Client(oauth2.NoContext, tok)
+	client := urlfetch.Client(c)
+//	client.Get("...")
 
+	gaeLog.Infof(c, "Token: %v", tok)
+	gaeLog.Infof(c, "Access Token: %v", tok.AccessToken)
+//	fmt.Fprint(w, "No Autographs!")
 
-	fmt.Fprint(w, "No Autographs!")
+	fullUrl := fmt.Sprintf(
+		"https://www.googleapis.com/gmail/v1/users/me/messages?fields=resultSizeEstimate&maxResults=10&includeSpamTrash=false&q=%%22is%%3Aunread%%22&access_token=%s",
+		tok.AccessToken)
 
-	fmt.Fprintf(w, "Hello, %v!", u)
+	gaeLog.Infof(c, "GET Request %v", fullUrl)
+//	req, err2 := http.NewRequest("GET", fullUrl, nil)
+//	if err2 != nil {
+//		gaeLog.Infof(c, "request: %s", err2.Error())
+//		log.Fatal("NewRequest: ", err)
+//	}
 
+//	resp, requestErr := client.Do(req)
+	resp, requestErr := client.Get(fullUrl)
+	if requestErr != nil {
+		gaeLog.Infof(c, "client.Do err: %v", requestErr.Error())
+		log.Fatal("Do: ", requestErr)
+	}
+
+	defer resp.Body.Close()
+
+	body, dataReadErr := ioutil.ReadAll(resp.Body)
+	if dataReadErr != nil {
+		gaeLog.Infof(c, "dataReadErr: %v", dataReadErr.Error())
+		log.Fatal("ReadAll: ", dataReadErr)
+	}
+	gaeLog.Infof(c, "data received: %v", body)
+
+	res := make(map[string]interface{},0)
+	json.Unmarshal(body, &res)
+	gaeLog.Infof(c, "unmarshaled: ", res)
+	var unReadMsg = res["resultSizeEstimate"]
+
+	fmt.Fprint(w,"Your unread messages: ", unReadMsg)
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome!")
+	fmt.Fprint(w, rootForm)
 }
+
+const rootForm = `
+  <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <title>Go Gmail</title>
+        <link rel="stylesheet" href="/stylesheets/goview.css">
+      </head>
+      <body>
+        <h1><img style="margin-left: 120px;" src="images/gsv.png" alt="Go View" />GoView</h1>
+        <h2>Unread Messages!?</h2>
+        <p>Cick on the button to see how many uread messages you have:</p>
+        <form style="margin-left: 120px;" action="/g_start" accept-charset="utf-8">
+          <input type="submit" value="Go!" />
+        </form>
+      </body>
+    </html>
+`
 
 func g_start(w http.ResponseWriter, r *http.Request) {
 	//Read the client_secret.json and parse the file so we can get our Google authorization
@@ -134,19 +186,3 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//func main() {
-//
-//	file, err := ioutil.ReadFile("./config/client_secret.json")
-//	if err != nil {
-//		fmt.Println("File error:", err)
-//		os.Exit(1)
-//	}
-//
-//
-//	fmt.Println("*******************************")
-//
-//	var clientSecret ClientSecret
-//	err = json.Unmarshal(file, &clientSecret)
-//	fmt.Println(clientSecret.Web.Client_secret)
-//
-//}
