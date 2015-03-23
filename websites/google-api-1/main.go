@@ -123,7 +123,6 @@ const rootForm = `
         <link rel="stylesheet" href="/stylesheets/goview.css">
       </head>
       <body>
-        <h1><img style="margin-left: 120px;" src="images/gsv.png" alt="Go View" />GoView</h1>
         <h2>Unread Messages!?</h2>
         <p>Cick on the button to see how many uread messages you have:</p>
         <form style="margin-left: 120px;" action="/g_start" accept-charset="utf-8">
