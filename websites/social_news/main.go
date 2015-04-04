@@ -37,14 +37,40 @@ func init() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	//Get 3 results
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery(WebSubmissionEntityName).
-		Order("-SubmitDateTime").
-		Limit(3)
+
+	//Check if the request is before or after to create the right query
+	//The GET requests for the stories will be based around the SubmitDateTime
+	//Using "after" will return stories after a certain date from newest to oldest
+	//Using "before" will return stories before a certain date from oldest to newest
+	//Default is to use the latest 3 submissions
+
+	storyAfter := r.FormValue("after")
+	storyBefore := r.FormValue("before")
+	returnLimit := 3
+
+	var q *datastore.Query
+
+	if storyAfter != "" {
+		//Get the results in descending order for newest to oldest
+		q = datastore.NewQuery(WebSubmissionEntityName).
+			Filter("SubmitDateTime <", storyAfter ).
+			Order("-SubmitDateTime").
+			Limit(returnLimit)
+	} else if storyBefore != "" {
+		//Get the results is ascending order from oldest to newest
+		q = datastore.NewQuery(WebSubmissionEntityName).
+			Filter("SubmitDateTime >", storyBefore ).
+			Order("SubmitDateTime").
+			Limit(returnLimit)
+	} else {
+		q = datastore.NewQuery(WebSubmissionEntityName).
+			Order("SubmitDateTime").
+			Limit(returnLimit)
+	}
 
 	//Populate the results struct and store the keys
-	var storyList []StoryListData
+	var pageCon PageContainer
 
 	for t := q.Run(c); ; {
 		var x WebSubmission
@@ -53,11 +79,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		if err != nil{
-			serveError(c,w,err)
+//			serveError(c,w,err)
 			fmt.Fprintf(w, "nope %v", err.Error())
 			return
 		}
-		storyList = append(storyList, StoryListData{x,key})
+		pageCon.Stories = append(pageCon.Stories, StoryListData{x,key})
 	}
 
 	//Parse the template files
@@ -66,14 +92,21 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"public/templates/storylist.html",
 	))
 
+
+	pageCon.AfterLink = "after"
+	pageCon.BeforeLink = "before"
+
 	//show the page
-	if err := page.Execute(w, storyList); err != nil {
+	if err := page.Execute(w, pageCon); err != nil {
 		serveError(c,w,err)
+		fmt.Fprintf(w, "\n%v\n%v",err.Error(), pageCon)
 		return
 	}
 
-	length := len(storyList)
-	fmt.Fprintf(w,"Here - %v", storyList[length-1].Story.SubmitDateTime)
+
+	length := len(pageCon.Stories)
+	fmt.Fprintf(w,"Here - %v", pageCon.Stories[length-1].Story.SubmitDateTime)
+	fmt.Fprintf(w, "%v", pageCon)
 
 //	for _, value := range(storyList) {
 //		fmt.Fprintf(w, "%v", value)

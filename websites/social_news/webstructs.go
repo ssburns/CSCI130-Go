@@ -15,6 +15,12 @@ type WebSubmission struct {
 	Score int64
 }
 
+type PageContainer struct {
+	Stories []StoryListData
+	BeforeLink string
+	AfterLink string
+}
+
 type StoryListData struct {
 	Story WebSubmission
 	Key *datastore.Key
