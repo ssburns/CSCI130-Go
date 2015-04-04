@@ -1,4 +1,4 @@
-package hello
+package main
 
 import (
 	"fmt"
@@ -7,24 +7,14 @@ import (
 	"io"
 	"time"
 //	"os"
+	"math/rand"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
 	"golang.org/x/net/context"
 
-//	"appengine"
-//	"appengine/user"
-//	"appengine/datastore"
 )
 
-type webSubmission struct {
-	Title string
-	Link string
-	SubmitBy string
-	Thread int64
-	SubmitDateTime time.Time
-	SubmissionDesc string
-}
 
 type webUser struct {
 	Uuid uint64
@@ -45,7 +35,36 @@ func init() {
 
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, world!")
+
+	//Get 3 results
+	c := appengine.NewContext(r)
+	q := datastore.NewQuery(WebSubmissionEntityName).
+		Order("-SubmitDateTime").
+		Limit(3)
+
+	//Populate the results struct and store the keys
+	var storyList []StoryListData
+
+	for t := q.Run(c); ; {
+		var x WebSubmission
+		key, err := t.Next(&x)
+		if err == datastore.Done{
+			break
+		}
+		if err != nil{
+			serveError(c,w,err)
+			fmt.Fprintf(w, "nope %v", err.Error())
+			return
+		}
+		storyList = append(storyList, StoryListData{x,key})
+	}
+
+
+
+	for _, value := range(storyList) {
+		fmt.Fprintf(w, "%v\n\n", value)
+	}
+
 }
 
 func createHandler(w http.ResponseWriter, r *http.Request) {
@@ -80,15 +99,22 @@ func create2Handler(w http.ResponseWriter, r *http.Request) {
 
 	//TODO error checking for user?
 
-	newSubmission := webSubmission {
+	//TODO check random thread against an already existing one
+	rand.Seed(time.Now().UnixNano())
+	newThreadId := rand.Int63()
+
+	newSubmission := WebSubmission {
 		Title: strTitle,
 		Link: strLink,
 		SubmitBy: u.String(),
-		Thread: 123,	//TODO create random thread id
+		Thread: newThreadId,	//TODO create random thread id
+		SubmitDateTime: time.Now(),
+		SubmissionDesc: "",
+		Score: 0,
 	}
 
 
-	_, err := datastore.Put(c, datastore.NewIncompleteKey(c, "webSubmission", nil), &newSubmission)
+	_, err := datastore.Put(c, datastore.NewIncompleteKey(c, WebSubmissionEntityName, nil), &newSubmission)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -99,12 +125,12 @@ func create2Handler(w http.ResponseWriter, r *http.Request) {
 
 func readHandler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("webSubmission").
+	q := datastore.NewQuery(WebSubmissionEntityName).
 		Filter("SubmitBy =", "test@example.com")
 
 	b := new(bytes.Buffer)
 	for t := q.Run(c); ; {
-		var x webSubmission
+		var x WebSubmission
 		key, err := t.Next(&x)
 		if err == datastore.Done{
 			break
@@ -142,14 +168,14 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 
 func updateHandler2(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("webSubmission").
+	q := datastore.NewQuery(WebSubmissionEntityName).
 		//		Filter("SubmitBy =", "test@example.com")
 		Filter("Title =", "test1")
 
 	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
 	t := q.Run(c)
 
-	var x webSubmission
+	var x WebSubmission
 	key, err := t.Next(&x)
 	if err != nil{
 		serveError(c,w,err)
@@ -174,14 +200,14 @@ func updateHandler2(w http.ResponseWriter, r *http.Request) {
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("webSubmission").
+	q := datastore.NewQuery(WebSubmissionEntityName).
 		//		Filter("SubmitBy =", "test@example.com")
 		Filter("Title =", "test1")
 
 	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
 	t := q.Run(c)
 
-	var x webSubmission
+	var x WebSubmission
 	key, err := t.Next(&x)
 	if err != nil{
 		serveError(c,w,err)
