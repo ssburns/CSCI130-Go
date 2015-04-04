@@ -1,3 +1,12 @@
 {{define "storylist"}}
-
+    {{range .}}
+        <div>
+            <p>{{.Story.Title}}</p>
+            <a href={{.Story.Link}}>{{.Story.Link}}</a>
+            <p>{{.Story.SubmitDateTime}}</p>
+            <p>{{.Story.SubmitBy}}</p>
+            <p>{{.Story.Score}}</p>
+            <p>{{.Key}}</p>
+        </div>
+    {{end}}
 {{end}}

@@ -8,6 +8,7 @@ import (
 	"time"
 //	"os"
 	"math/rand"
+	"html/template"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
@@ -59,11 +60,24 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		storyList = append(storyList, StoryListData{x,key})
 	}
 
+	//Parse the template files
+	page := template.Must(template.ParseFiles(
+		"public/templates/_base.html",
+		"public/templates/storylist.html",
+	))
 
-
-	for _, value := range(storyList) {
-		fmt.Fprintf(w, "%v\n\n", value)
+	//show the page
+	if err := page.Execute(w, storyList); err != nil {
+		serveError(c,w,err)
+		return
 	}
+
+	length := len(storyList)
+	fmt.Fprintf(w,"Here - %v", storyList[length-1].Story.SubmitDateTime)
+
+//	for _, value := range(storyList) {
+//		fmt.Fprintf(w, "%v", value)
+//	}
 
 }
 
