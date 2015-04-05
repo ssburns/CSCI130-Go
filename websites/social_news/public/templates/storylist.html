@@ -5,8 +5,13 @@
             <a href={{.Story.Link}}>{{.Story.Link}}</a>
             <p>{{.Story.SubmitDateTime}}</p>
             <p>{{.Story.SubmitBy}}</p>
-            <p>{{.Story.Score}}</p>
-            <p>{{.Key}}</p>
+            <p>----------------------------------------------------</p>
+        </div>
+    {{end}}
+
+    {{if .AfterLink}}
+        <div>
+            <a href="/?after={{.AfterLink}}">Next</a>
         </div>
     {{end}}
 {{end}}

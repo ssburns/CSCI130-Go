@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"io"
 	"time"
+//	"strings"
 //	"os"
 	"math/rand"
 	"html/template"
@@ -13,6 +14,7 @@ import (
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
 	"golang.org/x/net/context"
+	"google.golang.org/appengine/log"
 
 )
 
@@ -60,12 +62,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	} else if storyBefore != "" {
 		//Get the results is ascending order from oldest to newest
 		q = datastore.NewQuery(WebSubmissionEntityName).
-			Filter("SubmitDateTime >", storyBefore ).
+			Filter("SubmitDateTime <", storyBefore ).
 			Order("SubmitDateTime").
 			Limit(returnLimit)
 	} else {
+		longForm := "2006-01-02 15:04:05.000000 -0700 MST"	//The numbers used in this layout example matters! http://golang.org/src/time/format.go
+		mytime, perr := time.Parse(longForm, "2015-04-04 00:46:41.450681 -0700 PDT")
+		if perr != nil {
+			fmt.Fprintf(w, "time err: %v", perr.Error())
+			return
+		}
 		q = datastore.NewQuery(WebSubmissionEntityName).
-			Order("SubmitDateTime").
+			Filter("SubmitDateTime <", mytime).
+			Order("-SubmitDateTime").
 			Limit(returnLimit)
 	}
 
@@ -92,11 +101,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"public/templates/storylist.html",
 	))
 
+	//if we filled up the page with results there are probably more, build the
+	//next page link
+	length, cerr := q.Count(c)
+	if cerr != nil {
+		serveError(c,w,cerr)
+	}
+	if  length == returnLimit {
+		//get the submit datetime of the last story
+		pageCon.AfterLink = pageCon.Stories[returnLimit - 1].Story.SubmitDateTime
+	}
 
-	pageCon.AfterLink = "after"
-	pageCon.BeforeLink = "before"
-
-	//show the page
+	//build and show the page
 	if err := page.Execute(w, pageCon); err != nil {
 		serveError(c,w,err)
 		fmt.Fprintf(w, "\n%v\n%v",err.Error(), pageCon)
@@ -104,9 +120,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-	length := len(pageCon.Stories)
-	fmt.Fprintf(w,"Here - %v", pageCon.Stories[length-1].Story.SubmitDateTime)
-	fmt.Fprintf(w, "%v", pageCon)
+//	length := len(pageCon.Stories)
+//	fmt.Fprintf(w,"Here - %v", pageCon.Stories[length-1].Story.SubmitDateTime)
+//	fmt.Fprintf(w, "%v", pageCon)
 
 //	for _, value := range(storyList) {
 //		fmt.Fprintf(w, "%v", value)

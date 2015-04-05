@@ -18,7 +18,7 @@ type WebSubmission struct {
 type PageContainer struct {
 	Stories []StoryListData
 	BeforeLink string
-	AfterLink string
+	AfterLink time.Time
 }
 
 type StoryListData struct {
