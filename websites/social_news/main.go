@@ -50,7 +50,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	afterDate := r.FormValue("after")
 	beforeDate := r.FormValue("before")
-	returnLimit := 4
+	returnLimit := 5
 
 	var q *datastore.Query
 

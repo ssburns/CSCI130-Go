@@ -1,12 +1,16 @@
 {{define "storylist"}}
-    {{range .Stories}}
-        <div>
-            <p>{{.Story.Title}}</p>
-            <a href={{.Story.Link}}>{{.Story.Link}}</a>
-            <p>{{.Story.SubmitDateTime}}</p>
-            <p>{{.Story.SubmitBy}}</p>
-            <p>----------------------------------------------------</p>
-        </div>
+    {{if .Stories}}
+        {{range .Stories}}
+            <div>
+                <p>{{.Story.Title}}</p>
+                <a href={{.Story.Link}}>{{.Story.Link}}</a>
+                <p>{{.Story.SubmitDateTime}}</p>
+                <p>{{.Story.SubmitBy}}</p>
+                <p>----------------------------------------------------</p>
+            </div>
+        {{end}}
+    {{else}}
+        <p>Nothing here! You have reached the end of the internet...</p>
     {{end}}
 
     {{if .AfterLink}}
