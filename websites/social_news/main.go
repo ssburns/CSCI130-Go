@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"io"
 	"time"
-//	"strings"
+	"strings"
 //	"os"
 	"math/rand"
 	"html/template"
@@ -40,6 +40,7 @@ func init() {
 func handler(w http.ResponseWriter, r *http.Request) {
 
 	c := appengine.NewContext(r)
+	log.Infof(c, "Got a visitor to the front page!")	//keep log in the imports
 
 	//Check if the request is before or after to create the right query
 	//The GET requests for the stories will be based around the SubmitDateTime
@@ -47,35 +48,42 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	//Using "before" will return stories before a certain date from oldest to newest
 	//Default is to use the latest 3 submissions
 
-	storyAfter := r.FormValue("after")
-	storyBefore := r.FormValue("before")
-	returnLimit := 3
+	afterDate := r.FormValue("after")
+	beforeDate := r.FormValue("before")
+	returnLimit := 4
 
 	var q *datastore.Query
 
-	if storyAfter != "" {
+
+	if afterDate != "" {
 		//Get the results in descending order for newest to oldest
-		q = datastore.NewQuery(WebSubmissionEntityName).
-			Filter("SubmitDateTime <", storyAfter ).
-			Order("-SubmitDateTime").
-			Limit(returnLimit)
-	} else if storyBefore != "" {
-		//Get the results is ascending order from oldest to newest
-		q = datastore.NewQuery(WebSubmissionEntityName).
-			Filter("SubmitDateTime <", storyBefore ).
-			Order("SubmitDateTime").
-			Limit(returnLimit)
-	} else {
-		longForm := "2006-01-02 15:04:05.000000 -0700 MST"	//The numbers used in this layout example matters! http://golang.org/src/time/format.go
-		mytime, perr := time.Parse(longForm, "2015-04-04 00:46:41.450681 -0700 PDT")
-		if perr != nil {
-			fmt.Fprintf(w, "time err: %v", perr.Error())
+		afterDate = strings.Replace(afterDate, "%20", " ", -1) //replace all %20 with " "
+		ttime, err := time.Parse(DateTimeDatastoreFormat, afterDate)
+		if err != nil {
+			serveError(c,w,err)
 			return
 		}
 		q = datastore.NewQuery(WebSubmissionEntityName).
-			Filter("SubmitDateTime <", mytime).
+			Filter("SubmitDateTime <", ttime ).
 			Order("-SubmitDateTime").
 			Limit(returnLimit)
+	} else if beforeDate != "" {
+		//Get the results is ascending order from oldest to newest
+		beforeDate = strings.Replace(beforeDate, "%20", " ", -1) //replace all %20 with " "
+		ttime, err := time.Parse(DateTimeDatastoreFormat, beforeDate)
+		if err != nil {
+			serveError(c,w,err)
+			return
+		}
+		q = datastore.NewQuery(WebSubmissionEntityName).
+			Filter("SubmitDateTime >", ttime ).
+			Order("SubmitDateTime").
+			Limit(returnLimit)
+	} else {
+		q = datastore.NewQuery(WebSubmissionEntityName).
+			Order("-SubmitDateTime").
+			Limit(returnLimit)
+
 	}
 
 	//Populate the results struct and store the keys
@@ -104,12 +112,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	//if we filled up the page with results there are probably more, build the
 	//next page link
 	length, cerr := q.Count(c)
+	log.Infof(c, "The query length is: %v", length)
+	log.Infof(c, "The after link before is: %v", pageCon.AfterLink)
 	if cerr != nil {
 		serveError(c,w,cerr)
 	}
 	if  length == returnLimit {
 		//get the submit datetime of the last story
-		pageCon.AfterLink = pageCon.Stories[returnLimit - 1].Story.SubmitDateTime
+		pageCon.AfterLink = pageCon.Stories[returnLimit - 1].Story.SubmitDateTime.Format(DateTimeDatastoreFormat)
 	}
 
 	//build and show the page
@@ -291,5 +301,5 @@ func serveError(c context.Context, w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	io.WriteString(w, "Internal Server Error")
-//	c.Errorf("%v", err)
+	log.Errorf(c, "%v", err)
 }

@@ -18,7 +18,7 @@ type WebSubmission struct {
 type PageContainer struct {
 	Stories []StoryListData
 	BeforeLink string
-	AfterLink time.Time
+	AfterLink string
 }
 
 type StoryListData struct {
@@ -28,5 +28,6 @@ type StoryListData struct {
 
 const (
 	WebSubmissionEntityName = "webSubmission"
+	DateTimeDatastoreFormat = "2006-01-02 15:04:05.99 -0700 MST"	//The numbers used in this layout example matters! http://golang.org/src/time/format.go
 )
 
