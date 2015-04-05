@@ -13,6 +13,12 @@
         <p>Nothing here! You have reached the end of the internet...</p>
     {{end}}
 
+    {{if .BeforeLink}}
+        <div>
+            <a href="/?before={{.BeforeLink}}">Prev</a>
+        </div>
+    {{end}}
+
     {{if .AfterLink}}
         <div>
             <a href="/?after={{.AfterLink}}">Next</a>

@@ -50,12 +50,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	afterDate := r.FormValue("after")
 	beforeDate := r.FormValue("before")
-	returnLimit := 5
+	returnLimit := 3
+	showPrevLink := false
 
 	var q *datastore.Query
 
 
 	if afterDate != "" {
+		showPrevLink = true
 		//Get the results in descending order for newest to oldest
 		afterDate = strings.Replace(afterDate, "%20", " ", -1) //replace all %20 with " "
 		ttime, err := time.Parse(DateTimeDatastoreFormat, afterDate)
@@ -68,6 +70,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			Order("-SubmitDateTime").
 			Limit(returnLimit)
 	} else if beforeDate != "" {
+		showPrevLink = true
 		//Get the results is ascending order from oldest to newest
 		beforeDate = strings.Replace(beforeDate, "%20", " ", -1) //replace all %20 with " "
 		ttime, err := time.Parse(DateTimeDatastoreFormat, beforeDate)
@@ -79,6 +82,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			Filter("SubmitDateTime >", ttime ).
 			Order("SubmitDateTime").
 			Limit(returnLimit)
+
+		//limit check at the beginning if less than the returnLimit redo from the beginning
+		length, cerr := q.Count(c)
+		if cerr != nil {
+			serveError(c,w,cerr)
+		}
+
+		//TODO refactor to not duplicate the default query below
+		if length < returnLimit {
+			showPrevLink = false
+			q = datastore.NewQuery(WebSubmissionEntityName).
+			Order("-SubmitDateTime").
+			Limit(returnLimit)
+		}
 	} else {
 		q = datastore.NewQuery(WebSubmissionEntityName).
 			Order("-SubmitDateTime").
@@ -103,17 +120,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		pageCon.Stories = append(pageCon.Stories, StoryListData{x,key})
 	}
 
-	//Parse the template files
-	page := template.Must(template.ParseFiles(
-		"public/templates/_base.html",
-		"public/templates/storylist.html",
-	))
-
 	//if we filled up the page with results there are probably more, build the
 	//next page link
 	length, cerr := q.Count(c)
-	log.Infof(c, "The query length is: %v", length)
-	log.Infof(c, "The after link before is: %v", pageCon.AfterLink)
 	if cerr != nil {
 		serveError(c,w,cerr)
 	}
@@ -122,21 +131,30 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		pageCon.AfterLink = pageCon.Stories[returnLimit - 1].Story.SubmitDateTime.Format(DateTimeDatastoreFormat)
 	}
 
+	//If it was a prev page press reverse the result array to get it back into chronological order
+	if length >= 1 && beforeDate != "" {
+		for i, j := 0, len(pageCon.Stories)-1; i < j; i, j = i+1, j-1 {
+			pageCon.Stories[i], pageCon.Stories[j] = pageCon.Stories[j], pageCon.Stories[i]
+		}
+	}
+
+	//prev page link
+	//check the length because going forward you can have null data
+	if showPrevLink && length >= 1{
+		pageCon.BeforeLink = pageCon.Stories[0].Story.SubmitDateTime.Format(DateTimeDatastoreFormat)
+	}
+
 	//build and show the page
+	page := template.Must(template.ParseFiles(
+		"public/templates/_base.html",
+		"public/templates/storylist.html",
+	))
+
 	if err := page.Execute(w, pageCon); err != nil {
 		serveError(c,w,err)
 		fmt.Fprintf(w, "\n%v\n%v",err.Error(), pageCon)
 		return
 	}
-
-
-//	length := len(pageCon.Stories)
-//	fmt.Fprintf(w,"Here - %v", pageCon.Stories[length-1].Story.SubmitDateTime)
-//	fmt.Fprintf(w, "%v", pageCon)
-
-//	for _, value := range(storyList) {
-//		fmt.Fprintf(w, "%v", value)
-//	}
 
 }
 
