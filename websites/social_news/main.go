@@ -29,9 +29,10 @@ func init() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/create2", create2Handler)
 	http.HandleFunc("/read", readHandler)
-	http.HandleFunc("/update", updateHandler)
-	http.HandleFunc("/update2", updateHandler2)
-	http.HandleFunc("/delete", deleteHandler)
+//	http.HandleFunc("/update", updateHandler)
+//	http.HandleFunc("/update2", updateHandler2)
+	http.HandleFunc("/edit/", editHandler)
+	http.HandleFunc("/delete/", deleteHandler)
 
 }
 
@@ -238,7 +239,9 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 //	fmt.Fprint(w, "Hello, read!")
 }
 
-func updateHandler(w http.ResponseWriter, r *http.Request) {
+func editHandler(w http.ResponseWriter, r *http.Request) {
+
+	//TODO update with YAML require login to not need to check the user status
 
 	c := appengine.NewContext(r)
 	u := user.Current(c)
@@ -254,65 +257,94 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.ServeFile(w,r, "public/templates/update.html")
-}
+	newLink := r.FormValue("link")
+	if newLink == nil {
+		http.ServeFile(w,r, "public/templates/update.html")
+	} else {
 
-func updateHandler2(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
-	q := datastore.NewQuery(WebSubmissionEntityName).
-		//		Filter("SubmitBy =", "test@example.com")
-		Filter("Title =", "test1")
-
-	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
-	t := q.Run(c)
-
-	var x WebSubmission
-	key, err := t.Next(&x)
-	if err != nil{
-		serveError(c,w,err)
-		fmt.Fprintf(w, "nope %v", err.Error())
-		return
 	}
 
-	//Update field
-	x.Link = r.FormValue("link")
-
-
-	//Store back
-	_, err2 := datastore.Put(c, key, &x)
-	if err2 != nil {
-		http.Error(w, err2.Error(), http.StatusInternalServerError)
-		return
-	}
-
-//	fmt.Fprint(w, "Hello Update")
-	http.Redirect(w,r,"/read",http.StatusFound)
 }
+
+//func updateHandler(w http.ResponseWriter, r *http.Request) {
+//
+//	c := appengine.NewContext(r)
+//	u := user.Current(c)
+//
+//	if u == nil {
+//		url, err := user.LoginURL(c, r.URL.String())
+//		if err != nil {
+//			http.Error(w, err.Error(), http.StatusInternalServerError)
+//			return
+//		}
+//		w.Header().Set("Location", url)
+//		w.WriteHeader(http.StatusFound)
+//		return
+//	}
+//
+//	http.ServeFile(w,r, "public/templates/update.html")
+//}
+//
+//func updateHandler2(w http.ResponseWriter, r *http.Request) {
+//	c := appengine.NewContext(r)
+//	q := datastore.NewQuery(WebSubmissionEntityName).
+//		//		Filter("SubmitBy =", "test@example.com")
+//		Filter("Title =", "test1")
+//
+//	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
+//	t := q.Run(c)
+//
+//	var x WebSubmission
+//	key, err := t.Next(&x)
+//	if err != nil{
+//		serveError(c,w,err)
+//		fmt.Fprintf(w, "nope %v", err.Error())
+//		return
+//	}
+//
+//	//Update field
+//	x.Link = r.FormValue("link")
+//
+//
+//	//Store back
+//	_, err2 := datastore.Put(c, key, &x)
+//	if err2 != nil {
+//		http.Error(w, err2.Error(), http.StatusInternalServerError)
+//		return
+//	}
+//
+////	fmt.Fprint(w, "Hello Update")
+//	http.Redirect(w,r,"/read",http.StatusFound)
+//}
+
+//func deleteHandler(w http.ResponseWriter, r *http.Request) {
+//	c := appengine.NewContext(r)
+//	q := datastore.NewQuery(WebSubmissionEntityName).
+//		//		Filter("SubmitBy =", "test@example.com")
+//		Filter("Title =", "test1")
+//
+//	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
+//	t := q.Run(c)
+//
+//	var x WebSubmission
+//	key, err := t.Next(&x)
+//	if err != nil{
+//		serveError(c,w,err)
+//		fmt.Fprintf(w, "nope %v", err.Error())
+//		return
+//	}
+//
+//	err2 := datastore.Delete(c, key)
+//	if err != nil {
+//		serveError(c,w,err2)
+//		return
+//	}
+//
+//	http.Redirect(w,r,"/read", http.StatusFound)
+//}
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
-	q := datastore.NewQuery(WebSubmissionEntityName).
-		//		Filter("SubmitBy =", "test@example.com")
-		Filter("Title =", "test1")
-
-	//TODO cleanup checks whatever for emtpy or otherwise other than 1 result
-	t := q.Run(c)
-
-	var x WebSubmission
-	key, err := t.Next(&x)
-	if err != nil{
-		serveError(c,w,err)
-		fmt.Fprintf(w, "nope %v", err.Error())
-		return
-	}
-
-	err2 := datastore.Delete(c, key)
-	if err != nil {
-		serveError(c,w,err2)
-		return
-	}
-
-	http.Redirect(w,r,"/read", http.StatusFound)
+	fmt.Fprintf(w, "At deleteHandler")
 }
 
 func serveError(c context.Context, w http.ResponseWriter, err error) {

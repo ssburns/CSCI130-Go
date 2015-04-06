@@ -6,6 +6,8 @@
                 <a href={{.Story.Link}}>{{.Story.Link}}</a>
                 <p>{{.Story.SubmitDateTime}}</p>
                 <p>{{.Story.SubmitBy}}</p>
+                <a href="/edit/{{.Story.Thread}}">edit</a>
+                <a href="/delete/{{.Story.Thread}}">delete</a>
                 <p>----------------------------------------------------</p>
             </div>
         {{end}}
