@@ -24,6 +24,7 @@ type PageContainer struct {
 type StoryListData struct {
 	Story WebSubmission
 	Key *datastore.Key
+	ShowEditDelete bool
 }
 
 const (

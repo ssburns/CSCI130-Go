@@ -6,6 +6,7 @@
                 <a href={{.Story.Link}}>{{.Story.Link}}</a>
                 <p>{{.Story.SubmitDateTime}}</p>
                 <p>{{.Story.SubmitBy}}</p>
+                {{if .ShowEditDelete}}
                 <form action="/edit" method="post">
                     <input type="hidden" name="thread" value="{{.Story.Thread}}">
                     <input type="submit" value="edit">
@@ -14,6 +15,7 @@
                     <input type="hidden" name="thread" value="{{.Story.Thread}}">
                     <input type="submit" value="delete">
                 </form>
+                {{end}}
                 <p>----------------------------------------------------</p>
             </div>
         {{end}}

@@ -43,6 +43,7 @@ func init() {
 func handler(w http.ResponseWriter, r *http.Request) {
 
 	c := appengine.NewContext(r)
+	u := user.Current(c)
 	log.Infof(c, "Got a visitor to the front page!")	//keep log in the imports
 
 	//Check if the request is before or after to create the right query
@@ -120,7 +121,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "nope %v", err.Error())
 			return
 		}
-		pageCon.Stories = append(pageCon.Stories, StoryListData{x,key})
+		if u == nil {
+			pageCon.Stories = append(pageCon.Stories, StoryListData{x, key, false})
+		} else {
+			pageCon.Stories = append(pageCon.Stories, StoryListData{x, key, u.String() == x.SubmitBy})
+		}
 	}
 
 	//if we filled up the page with results there are probably more, build the
@@ -213,33 +218,9 @@ func create2Handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-//	http.Redirect(w, r, "/", http.StatusFound)
-	fmt.Fprintf(w, "Thank you for your submission")
-}
 
-//func readHandler(w http.ResponseWriter, r *http.Request) {
-//	c := appengine.NewContext(r)
-//	q := datastore.NewQuery(WebSubmissionEntityName).
-//		Filter("SubmitBy =", "test@example.com")
-//
-//	b := new(bytes.Buffer)
-//	for t := q.Run(c); ; {
-//		var x WebSubmission
-//		key, err := t.Next(&x)
-//		if err == datastore.Done{
-//			break
-//		}
-//		if err != nil{
-//			serveError(c,w,err)
-//			fmt.Fprintf(w, "nope %v", err.Error())
-//			return
-//		}
-//		fmt.Fprintf(b,"Key=%v\nwebSubmission=%#v\n\n", key, x)
-//	}
-//	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-//	io.Copy(w,b)
-////	fmt.Fprint(w, "Hello, read!")
-//}
+	http.Redirect(w,r,"/", http.StatusFound)
+}
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
 	//For now identify by the ThreadId since each submission will have a unique one
