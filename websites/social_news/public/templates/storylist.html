@@ -6,8 +6,14 @@
                 <a href={{.Story.Link}}>{{.Story.Link}}</a>
                 <p>{{.Story.SubmitDateTime}}</p>
                 <p>{{.Story.SubmitBy}}</p>
-                <a href="/edit/{{.Story.Thread}}">edit</a>
-                <a href="/delete/{{.Story.Thread}}">delete</a>
+                <form action="/edit" method="post">
+                    <input type="hidden" name="thread" value="{{.Story.Thread}}">
+                    <input type="submit" value="edit">
+                </form>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="thread" value="{{.Story.Thread}}">
+                    <input type="submit" value="delete">
+                </form>
                 <p>----------------------------------------------------</p>
             </div>
         {{end}}
