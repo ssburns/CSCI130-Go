@@ -31,4 +31,5 @@ const (
 	WebSubmissionEntityName = "webSubmission"
 	DateTimeDatastoreFormat = "2006-01-02 15:04:05.99 -0700 MST"	//The numbers used in this layout example matters! http://golang.org/src/time/format.go
 	WebSubmissionEditName = "webSubmissionEdit"
+	AppBucketName = "crypto-catfish-89402.appspot.com"
 )

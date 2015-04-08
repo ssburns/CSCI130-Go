@@ -35,6 +35,8 @@ func init() {
 	http.HandleFunc("/edit", editHandler)
 	http.HandleFunc("/edit2", editHandler2)
 	http.HandleFunc("/delete", deleteHandler)
+	http.HandleFunc("/upload", uploadHandler)
+	http.HandleFunc("/uploadSubmit", uploadSubmitHandler)
 
 }
 
@@ -325,4 +327,12 @@ func serveError(c context.Context, w http.ResponseWriter, err error) {
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	io.WriteString(w, "Internal Server Error")
 	log.Errorf(c, "%v", err)
+}
+
+
+func uploadHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "at upload handler")
+}
+func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "at upload submit handler")
 }
