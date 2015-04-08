@@ -11,11 +11,18 @@ import (
 //	"os"
 	"math/rand"
 	"html/template"
+
+	"golang.org/x/net/context"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
-	"golang.org/x/net/context"
 	"google.golang.org/appengine/log"
+	"google.golang.org/appengine/file"
+	"google.golang.org/appengine/urlfetch"
+	"google.golang.org/cloud"
+	"google.golang.org/cloud/storage"
 
 )
 
@@ -326,13 +333,70 @@ func serveError(c context.Context, w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	io.WriteString(w, "Internal Server Error")
-	log.Errorf(c, "%v", err)
+	log.Errorf(c, "%v", err.Error())
 }
 
 
 func uploadHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "at upload handler")
+
+	c := appengine.NewContext(r)
+
+	page := template.Must(template.ParseFiles(
+		"public/templates/_base_content.html",
+		"public/templates/upload.html",
+	))
+
+	if err := page.Execute(w, nil); err != nil {
+		serveError(c,w,err)
+		fmt.Fprintf(w, "\n%v",err.Error(), nil)
+		return
+	}
 }
 func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "at upload submit handler")
+	// Create the appengine context
+	c := appengine.NewContext(r)
+
+	//get the file
+	f, _, err := r.FormFile("pic")
+	if err != nil {
+		fmt.Fprintf(w, "Error at upload submit %v", err.Error())
+		serveError(c, w,err)
+		return
+	}
+	defer f.Close()
+
+	//
+	bucket := AppBucketName
+	fileName := "picture"	//TODO replace with random hash?
+	if bucket == "" {
+		var err error
+		if bucket, err = file.DefaultBucketName(c); err != nil {
+			log.Errorf(c, "failed to get default GCS bucket name: %v", err)
+			return
+		}
+	}
+	hc := &http.Client{
+		Transport: &oauth2.Transport{
+			Source: google.AppEngineTokenSource(c, storage.ScopeFullControl),
+			Base:   &urlfetch.Transport{Context: c},
+			},
+	}
+	ctx := cloud.NewContext(appengine.AppID(c), hc)
+
+	wc := storage.NewWriter(ctx, bucket, fileName)
+	wc.ContentType = "image/*"	//TODO use net/http.DetectContentType
+	wc.Metadata = map[string]string{
+		"x-goog-meta-foo": "foo",
+		"x-goog-meta-bar": "bar",
+	}
+
+	if _, err := wc.Write(f.Read()); err != nil {
+		log.Errorf(c, "createFile: unable to write data to bucket %q, file %q: %v", bucket, fileName, err)
+		return
+	}
+
+	if err := wc.Close(); err != nil {
+		log.Errorf(c, "createFile: unable to close bucket %q, file %q: %v", bucket, fileName, err)
+		return
+	}
 }

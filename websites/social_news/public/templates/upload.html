@@ -1,7 +1,7 @@
 {{define "content"}}
-    <h1>Edit</h1>
-    <p>Edit your submission</p>
-    <form action="demo_form.asp">
+    <h1>Upload</h1>
+    <p>Upload a picture!</p>
+    <form action="/uploadSubmit" method="post" enctype="multipart/form-data">
         <input type="file" name="pic" accept="image/*">
         <input type="submit">
     </form>
