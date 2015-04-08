@@ -5,9 +5,11 @@ import (
 //	"bytes"
 	"net/http"
 	"io"
+	"io/ioutil"
 	"time"
 	"strings"
 	"strconv"
+//	"bytes"
 //	"os"
 	"math/rand"
 	"html/template"
@@ -357,17 +359,21 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
 	//get the file
-	f, _, err := r.FormFile("pic")
+	//Middle return is the original filename from the user
+	f, _, err := r.FormFile("pic")    //returns a multipart.File
 	if err != nil {
 		fmt.Fprintf(w, "Error at upload submit %v", err.Error())
-		serveError(c, w,err)
+		serveError(c, w, err)
 		return
 	}
 	defer f.Close()
 
-	//
+	// setup the cloud storage
 	bucket := AppBucketName
-	fileName := "picture"	//TODO replace with random hash?
+	fileName := "picture"    //TODO replace with random hash?
+
+	//May not be needed, check original example? wherevere that is
+	//Probably had somekind of switch for dev vs gae
 	if bucket == "" {
 		var err error
 		if bucket, err = file.DefaultBucketName(c); err != nil {
@@ -379,18 +385,23 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 		Transport: &oauth2.Transport{
 			Source: google.AppEngineTokenSource(c, storage.ScopeFullControl),
 			Base:   &urlfetch.Transport{Context: c},
-			},
+		},
 	}
 	ctx := cloud.NewContext(appengine.AppID(c), hc)
 
 	wc := storage.NewWriter(ctx, bucket, fileName)
-	wc.ContentType = "image/*"	//TODO use net/http.DetectContentType
-	wc.Metadata = map[string]string{
+	wc.ContentType = "image/*"    //TODO use net/http.DetectContentType
+	wc.Metadata = map[string]string{	//TODO update as necessary
 		"x-goog-meta-foo": "foo",
 		"x-goog-meta-bar": "bar",
 	}
 
-	if _, err := wc.Write(f.Read()); err != nil {
+	//Convert the uploaded data to []byte for the cloud storage write
+	//TODO this is probably not a good way for large files
+	uploadedFile, err := ioutil.ReadAll(f)
+
+
+	if _, err := wc.Write(uploadedFile); err != nil {
 		log.Errorf(c, "createFile: unable to write data to bucket %q, file %q: %v", bucket, fileName, err)
 		return
 	}
@@ -399,4 +410,6 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 		log.Errorf(c, "createFile: unable to close bucket %q, file %q: %v", bucket, fileName, err)
 		return
 	}
+
+	http.Redirect(w, r, "/", http.StatusFound)
 }
