@@ -11,6 +11,7 @@ import (
 	"strconv"
 //	"bytes"
 //	"os"
+//	"bufio"
 	"math/rand"
 	"html/template"
 
@@ -21,7 +22,7 @@ import (
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
-	"google.golang.org/appengine/file"
+//	"google.golang.org/appengine/file"	//used to get default bucketname
 	"google.golang.org/appengine/urlfetch"
 	"google.golang.org/cloud"
 	"google.golang.org/cloud/storage"
@@ -358,9 +359,8 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 	// Create the appengine context
 	c := appengine.NewContext(r)
 
-	//get the file
-	//Middle return is the original filename from the user
-	f, _, err := r.FormFile("pic")    //returns a multipart.File
+	//get the file and filename
+	f, fHeader, err := r.FormFile("pic")    //returns a multipart.File
 	if err != nil {
 		fmt.Fprintf(w, "Error at upload submit %v", err.Error())
 		serveError(c, w, err)
@@ -368,46 +368,64 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer f.Close()
 
-	// setup the cloud storage
-	bucket := AppBucketName
-	fileName := "picture"    //TODO replace with random hash?
 
-	//May not be needed, check original example? wherevere that is
-	//Probably had somekind of switch for dev vs gae
-	if bucket == "" {
-		var err error
-		if bucket, err = file.DefaultBucketName(c); err != nil {
-			log.Errorf(c, "failed to get default GCS bucket name: %v", err)
-			return
-		}
+	// Prep work to move into cloud storage
+	//*****************************************************
+
+	//get the filename
+	fname := fHeader.Filename
+
+	//Transfer the file data into a []byte for the cloud storage writer
+	fbytes, err2 := ioutil.ReadAll(f)
+//	fsize := len(fbytes)
+	if err2 != nil {
+		serveError(c, w, err2)
+		return
 	}
+
+	//get the file type
+	ftype := http.DetectContentType(fbytes)
+
+//	fmt.Fprintf(w,"the size is: %v: %v: %v", fsize, fname, ftype)
+
+
+	// Authorize this app with cloud storage
+	//*****************************************************
 	hc := &http.Client{
 		Transport: &oauth2.Transport{
 			Source: google.AppEngineTokenSource(c, storage.ScopeFullControl),
 			Base:   &urlfetch.Transport{Context: c},
 		},
 	}
+
+	// setup the cloud storage
+	//*****************************************************
+	bucket := AppBucketName
+
+	//Each app automatically has a bucket, this is how to get the bucket name
+	//	if bucket == "" {
+	//		var err error
+	//		if bucket, err = file.DefaultBucketName(c); err != nil {
+	//			log.Errorf(c, "failed to get default GCS bucket name: %v", err)
+	//			return
+	//		}
+	//	}
 	ctx := cloud.NewContext(appengine.AppID(c), hc)
 
-	wc := storage.NewWriter(ctx, bucket, fileName)
-	wc.ContentType = "image/*"    //TODO use net/http.DetectContentType
+	wc := storage.NewWriter(ctx, bucket, fname)
+	wc.ContentType = ftype
 	wc.Metadata = map[string]string{	//TODO update as necessary
 		"x-goog-meta-foo": "foo",
 		"x-goog-meta-bar": "bar",
 	}
 
-	//Convert the uploaded data to []byte for the cloud storage write
-	//TODO this is probably not a good way for large files
-	uploadedFile, err := ioutil.ReadAll(f)
-
-
-	if _, err := wc.Write(uploadedFile); err != nil {
-		log.Errorf(c, "createFile: unable to write data to bucket %q, file %q: %v", bucket, fileName, err)
+	if _, err := wc.Write(fbytes); err != nil {
+		log.Errorf(c, "createFile: unable to write data to bucket %q, file %q: %v", bucket, fname, err)
 		return
 	}
 
 	if err := wc.Close(); err != nil {
-		log.Errorf(c, "createFile: unable to close bucket %q, file %q: %v", bucket, fileName, err)
+		log.Errorf(c, "createFile: unable to close bucket %q, file %q: %v", bucket, fname, err)
 		return
 	}
 
