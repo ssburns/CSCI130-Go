@@ -9,10 +9,10 @@ import (
 //	"golang.org/x/net/context"
 //	"golang.org/x/oauth2"
 //	"golang.org/x/oauth2/google"
-	"google.golang.org/appengine"
+//	"google.golang.org/appengine"
 //	"google.golang.org/appengine/user"
 //	"google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/log"
+//	"google.golang.org/appengine/log"
 //	"google.golang.org/appengine/urlfetch"
 //	"google.golang.org/cloud"
 //	"google.golang.org/cloud/storage"
@@ -87,8 +87,8 @@ func createSessionHandler(w http.ResponseWriter, r *http.Request) {
 	sess.Set("data3", r.FormValue("data3"))
 
 	//debug
-	c := appengine.NewContext(r)
-	log.Infof(c, "Session ID: %v", sess.SessionID())
+//	c := appengine.NewContext(r)
+//	log.Infof(c, "Session ID: %v", sess.SessionID())
 
 	http.Redirect(w,r, "/", 302 )
 }
