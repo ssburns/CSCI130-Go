@@ -1,0 +1,41 @@
+{{define "content"}}
+    <h1>Welcome!</h1>
+
+    {{if .Username}}
+        <h3>Your session: {{.Username}}</h3>
+        <h3>Here is your information</h3>
+        <div>
+            <form action="/createsession" method="post" accept-charset="utf-8">
+                <div>
+                    <input type="text" name="data1" value="{{.Data1}}">
+                </div>
+                <div>
+                    <input type="text" name="data2" value="{{.Data2}}">
+                </div>
+                <div>
+                    <input type="text" name="data3" value="{{.Data3}}">
+                </div>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        <div>
+            <a href="/destroysession">Destroy Session</a>
+        </div>
+    {{else}}
+        <h3>Enter some information</h3>
+        <div>
+            <form action="/createsession" method="post" accept-charset="utf-8">
+                <div>
+                    <input type="text" name="data1" placeholder="data 1">
+                </div>
+                <div>
+                    <input type="text" name="data2" placeholder="data 2">
+                </div>
+                <div>
+                    <input type="text" name="data3" placeholder="data 3">
+                </div>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    {{end}}
+{{end}}

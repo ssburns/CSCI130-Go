@@ -22,7 +22,6 @@ import (
 	"google.golang.org/appengine/user"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
-//	"google.golang.org/appengine/file"	//used to get default bucketname
 	"google.golang.org/appengine/urlfetch"
 	"google.golang.org/cloud"
 	"google.golang.org/cloud/storage"
