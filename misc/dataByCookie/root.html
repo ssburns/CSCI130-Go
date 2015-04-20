@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hi</title>
+</head>
+<body>
+<h1>Hi</h1>
+
+{{if .}}
+    <p>You are {{.}}</p>
+    <p> Change your name:</p>
+    <form action="/view" method="post" accept-charset="utf-8">
+        <div>
+            <input type="text" name="name" placeholder="name" id="title">
+        </div>
+        <input type="submit" value="submit">
+    </form>
+{{else}}
+    <p>Enter your name</p>
+    <form action="/view" method="post" accept-charset="utf-8">
+        <div>
+            <input type="text" name="name" placeholder="name" id="title">
+        </div>
+        <input type="submit" value="submit">
+    </form>
+{{end}}
+</body>
+</html>
