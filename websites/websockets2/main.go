@@ -30,10 +30,20 @@ func homeHandler(c http.ResponseWriter, req *http.Request) {
 func main() {
 	flag.Parse()
 	homeTempl = template.Must(template.ParseFiles(filepath.Join(*assets, "home.html")))
-	h := newHub()
+
+	//create the hub
+	h := newHub()	//because chan have to be made with make
 	go h.run()
-	http.HandleFunc("/", homeHandler)
-	http.Handle("/ws", wsHandler{h: h})
+
+	//Register Address with the Mux
+
+	//This is where people go to connect to the chat
+	http.HandleFunc("/", homeHandler)	//HandleFunc -> homeHandler has the arguments for (ResponseWriter, *Request)
+
+	//This is where the chat client connects
+	http.Handle("/ws", wsHandler{h: h})	//Handle -> wsHandler has the method ServeHTTP(ResponseWriter, *Request) (the Handler interface)
+
+	//Serve!
 	if err := http.ListenAndServe(*addr, nil); err != nil {
 		log.Fatal("ListenAndServe:", err)
 	}
