@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"go/build"
-	"log"
+//	"log"
 	"net/http"
 	"path/filepath"
 	"text/template"
