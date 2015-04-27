@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$" />
     <content url="file://$MODULE_DIR$/../golang.org" />
     <content url="file://$MODULE_DIR$/../google.golang.org" />
+    <content url="file://C:/Web_Programming_CSUF" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Go SDK" level="project" />
