@@ -368,6 +368,7 @@ func uploadSubmitHandler(w http.ResponseWriter, r *http.Request) {
 	defer f.Close()
 
 
+
 	// Prep work to move into cloud storage
 	//*****************************************************
 
